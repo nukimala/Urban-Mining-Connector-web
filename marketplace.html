@@ -1,0 +1,140 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Marketplace E-Waste — Urban Mining Connector</title>
+  <meta name="description" content="Jual beli material e-waste secara transparan. Hubungkan pengepul dengan industri daur ulang formal." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css?v=3" />
+</head>
+<body>
+
+  <nav class="navbar scrolled" id="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="nav-logo">
+        <div class="logo-mark"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5z" fill="currentColor"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <span>Urban Mining<span class="logo-dot">.</span></span>
+      </a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="tentang.html" class="nav-link">Tentang</a></li>
+        <li><a href="cara-kerja.html" class="nav-link">Cara Kerja</a></li>
+        <li><a href="peta.html" class="nav-link">Peta Drop-Off</a></li>
+        <li><a href="marketplace.html" class="nav-link nav-active">Marketplace</a></li>
+        <li><a href="daftar.html" class="nav-link nav-cta">Bergabung</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <div class="container">
+      <div class="breadcrumb"><a href="index.html">Beranda</a> <span>/</span> <span>Marketplace</span></div>
+      <span class="section-tag">E-Waste Marketplace</span>
+      <h1 class="page-title">Jual beli material<br/>e-waste secara transparan</h1>
+      <p class="page-subtitle">Platform marketplace khusus e-waste yang menghubungkan pengepul dengan industri daur ulang secara langsung dan adil.</p>
+    </div>
+  </div>
+
+  <!-- MARKETPLACE LAYOUT -->
+  <section class="page-section">
+    <div class="container">
+
+      <!-- Filter Bar -->
+      <div class="mkt-bar">
+        <div class="mkt-filters" id="mkt-filters">
+          <button class="filter-pill active" data-mfilter="all" id="mf-all">Semua</button>
+          <button class="filter-pill" data-mfilter="smartphone" id="mf-sp">📱 Smartphone</button>
+          <button class="filter-pill" data-mfilter="laptop" id="mf-lp">💻 Laptop/Komputer</button>
+          <button class="filter-pill" data-mfilter="battery" id="mf-bt">🔋 Baterai</button>
+          <button class="filter-pill" data-mfilter="cable" id="mf-cb">🔌 Kabel & PCB</button>
+        </div>
+        <div class="mkt-count" id="mkt-count">8 listing tersedia</div>
+      </div>
+
+      <!-- Grid -->
+      <div class="marketplace-grid" id="marketplace-grid"></div>
+
+      <!-- CTA Banner -->
+      <div class="mkt-cta-banner">
+        <div class="mkt-cta-text">
+          <h3>Punya e-waste untuk dijual?</h3>
+          <p>Daftarkan listing kamu dan jangkau ratusan industri daur ulang di seluruh Indonesia.</p>
+        </div>
+        <a href="daftar.html" class="btn btn-dark" id="mkt-list-btn">Daftarkan E-Waste Kamu</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW MARKETPLACE WORKS -->
+  <section class="page-section" style="background:var(--grey-100);border-top:1px solid var(--grey-200);">
+    <div class="container">
+      <div class="section-header-center">
+        <span class="section-tag">Cara Jual di Marketplace</span>
+        <h2 class="section-title-lg">3 langkah mudah<br/>untuk listing</h2>
+      </div>
+      <div class="flow-steps">
+        <div class="flow-step reveal-up">
+          <div class="flow-num">1</div>
+          <div class="flow-icon">📝</div>
+          <h4>Daftar & Verifikasi</h4>
+          <p>Buat akun pengepul dan lengkapi verifikasi identitas untuk keamanan transaksi.</p>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step reveal-up">
+          <div class="flow-num">2</div>
+          <div class="flow-icon">📦</div>
+          <h4>Buat Listing</h4>
+          <p>Isi detail e-waste yang kamu jual: jenis, kuantitas, kondisi, dan harga yang kamu inginkan.</p>
+        </div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step reveal-up">
+          <div class="flow-num">3</div>
+          <div class="flow-icon">🤝</div>
+          <h4>Terhubung & Deal</h4>
+          <p>Industri daur ulang yang tertarik akan menghubungimu. Negosiasi dan selesaikan transaksi.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="footer-logo-mark"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5z" fill="currentColor"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+          <span class="footer-brand-name">Urban Mining Connector</span>
+        </div>
+        <p class="footer-tagline">Platform digital penghubung ekosistem daur ulang e-waste Indonesia.</p>
+        <div class="footer-tags"><span class="footer-tag">🌱 SDGs 12</span><span class="footer-tag">♻️ Ekonomi Sirkular</span></div>
+      </div>
+      <div class="footer-links-grid">
+        <div class="footer-col"><h4>Platform</h4><ul>
+          <li><a href="tentang.html">Tentang Kami</a></li><li><a href="cara-kerja.html">Cara Kerja</a></li>
+          <li><a href="peta.html">Peta Drop-Off</a></li><li><a href="marketplace.html">Marketplace</a></li>
+        </ul></div>
+        <div class="footer-col"><h4>Bergabung</h4><ul>
+          <li><a href="daftar.html">Daftar Masyarakat</a></li><li><a href="daftar.html">Daftar Pengepul</a></li><li><a href="daftar.html">Daftar Industri</a></li>
+        </ul></div>
+        <div class="footer-col"><h4>Kontak</h4><ul>
+          <li><a href="mailto:info@umc.id">info@umc.id</a></li><li><a href="#">+62 812-3456-7890</a></li>
+        </ul></div>
+      </div>
+      <div class="footer-wordmark">Urban Mining</div>
+      <div class="footer-bottom">
+        <p>© 2025 Urban Mining Connector · Supporting SDGs 12</p>
+        <div class="footer-socials"><a href="#" class="social-pill dark">ig</a><a href="#" class="social-pill dark">tw</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js?v=3"></script>
+</body>
+</html>
+
+

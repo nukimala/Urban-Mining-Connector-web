@@ -1,0 +1,251 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Daftar — Urban Mining Connector</title>
+  <meta name="description" content="Daftar sebagai masyarakat, pengepul, atau industri di Urban Mining Connector dan bergabung dalam ekosistem daur ulang e-waste Indonesia." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css?v=3" />
+</head>
+<body>
+
+  <nav class="navbar scrolled" id="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="nav-logo">
+        <div class="logo-mark"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5z" fill="currentColor"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <span>Urban Mining<span class="logo-dot">.</span></span>
+      </a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="tentang.html" class="nav-link">Tentang</a></li>
+        <li><a href="cara-kerja.html" class="nav-link">Cara Kerja</a></li>
+        <li><a href="peta.html" class="nav-link">Peta Drop-Off</a></li>
+        <li><a href="marketplace.html" class="nav-link">Marketplace</a></li>
+        <li><a href="daftar.html" class="nav-link nav-cta nav-active">Bergabung</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <div class="container">
+      <div class="breadcrumb"><a href="index.html">Beranda</a> <span>/</span> <span>Daftar</span></div>
+      <span class="section-tag">Bergabung Sekarang</span>
+      <h1 class="page-title">Jadilah bagian dari<br/>gerakan e-waste</h1>
+      <p class="page-subtitle">Pilih peranmu dan mulai berkontribusi dalam ekosistem daur ulang e-waste Indonesia.</p>
+    </div>
+  </div>
+
+  <!-- REGISTER SECTION -->
+  <section class="page-section">
+    <div class="container">
+      <div class="daftar-layout">
+
+        <!-- LEFT: Benefits -->
+        <div class="daftar-benefits">
+          <h2 class="section-title-lg" style="font-size:1.8rem;">Mengapa bergabung<br/>dengan kami?</h2>
+          <div class="benefit-list">
+            <div class="benefit-item">
+              <div class="benefit-icon">🌍</div>
+              <div>
+                <h4>Dampak Nyata</h4>
+                <p>Setiap aksimu berkontribusi langsung pada pengurangan e-waste dan mendukung SDGs 12.</p>
+              </div>
+            </div>
+            <div class="benefit-item">
+              <div class="benefit-icon">💰</div>
+              <div>
+                <h4>Nilai Ekonomi</h4>
+                <p>Temukan nilai tersembunyi dalam e-waste melalui platform marketplace kami yang transparan.</p>
+              </div>
+            </div>
+            <div class="benefit-item">
+              <div class="benefit-icon">🤝</div>
+              <div>
+                <h4>Jaringan Luas</h4>
+                <p>Terhubung dengan ratusan pengepul dan industri daur ulang formal di seluruh Indonesia.</p>
+              </div>
+            </div>
+            <div class="benefit-item">
+              <div class="benefit-icon">📊</div>
+              <div>
+                <h4>Transparansi Penuh</h4>
+                <p>Lacak perjalanan e-waste kamu dari pickup hingga fasilitas daur ulang akhir secara real-time.</p>
+              </div>
+            </div>
+          </div>
+          <div class="benefit-stats">
+            <div class="bs-item">
+              <span class="bs-num" data-target="5200" data-suffix="+">0</span>
+              <span class="bs-lbl">Pengguna Aktif</span>
+            </div>
+            <div class="bs-item">
+              <span class="bs-num" data-target="48" data-suffix="">0</span>
+              <span class="bs-lbl">Mitra Industri</span>
+            </div>
+            <div class="bs-item">
+              <span class="bs-num" data-target="21" data-suffix="">0</span>
+              <span class="bs-lbl">Kota Terjangkau</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT: Form -->
+        <div class="daftar-form-wrap">
+          <div class="reg-wrapper">
+            <div class="reg-tabs" id="reg-tabs">
+              <button class="reg-tab active" data-tab="citizen" id="tab-ctz">🏠 Masyarakat</button>
+              <button class="reg-tab" data-tab="collector" id="tab-col">🚛 Pengepul</button>
+              <button class="reg-tab" data-tab="industry" id="tab-ind">🏭 Industri</button>
+            </div>
+
+            <!-- Masyarakat -->
+            <div class="tab-panel active" id="panel-citizen">
+              <form class="reg-form" id="form-citizen" novalidate>
+                <div class="form-row">
+                  <div class="form-group"><label for="c-name">Nama Lengkap</label><input type="text" id="c-name" placeholder="John Doe" required /></div>
+                  <div class="form-group"><label for="c-email">Email</label><input type="email" id="c-email" placeholder="john@email.com" required /></div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group"><label for="c-phone">No. Telepon</label><input type="tel" id="c-phone" placeholder="08xx-xxxx-xxxx" /></div>
+                  <div class="form-group"><label for="c-city">Kota</label>
+                    <select id="c-city"><option value="">Pilih Kota</option><option>Jakarta</option><option>Bandung</option><option>Surabaya</option><option>Medan</option><option>Semarang</option><option>Makassar</option><option>Yogyakarta</option><option>Lainnya</option></select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>Perangkat yang Ingin Didaur Ulang</label>
+                  <div class="chip-group">
+                    <label class="chip"><input type="checkbox" value="smartphone"/>📱 Smartphone</label>
+                    <label class="chip"><input type="checkbox" value="laptop"/>💻 Laptop</label>
+                    <label class="chip"><input type="checkbox" value="tv"/>📺 TV</label>
+                    <label class="chip"><input type="checkbox" value="kulkas"/>🧊 Kulkas/AC</label>
+                    <label class="chip"><input type="checkbox" value="battery"/>🔋 Baterai</label>
+                    <label class="chip"><input type="checkbox" value="other"/>📦 Lainnya</label>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>Metode Pengiriman</label>
+                  <div class="chip-group">
+                    <label class="chip"><input type="radio" name="c-method" value="dropoff" checked/>Drop-Off ke Titik Terdekat</label>
+                    <label class="chip"><input type="radio" name="c-method" value="pickup"/>Request Pickup ke Rumah</label>
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-dark btn-full" id="submit-citizen">Daftar sebagai Masyarakat</button>
+              </form>
+            </div>
+
+            <!-- Pengepul -->
+            <div class="tab-panel" id="panel-collector">
+              <form class="reg-form" id="form-collector" novalidate>
+                <div class="form-row">
+                  <div class="form-group"><label for="col-name">Nama / Nama Usaha</label><input type="text" id="col-name" placeholder="CV. Daur Ulang Jaya" required /></div>
+                  <div class="form-group"><label for="col-email">Email Bisnis</label><input type="email" id="col-email" placeholder="bisnis@email.com" required /></div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group"><label for="col-phone">No. Telepon</label><input type="tel" id="col-phone" placeholder="08xx-xxxx-xxxx" required /></div>
+                  <div class="form-group"><label for="col-city">Kota Operasi</label>
+                    <select id="col-city"><option value="">Pilih Kota</option><option>Jakarta</option><option>Bandung</option><option>Surabaya</option><option>Medan</option><option>Semarang</option><option>Makassar</option><option>Yogyakarta</option><option>Lainnya</option></select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="col-area">Wilayah Cakupan: <span id="col-area-val" class="range-val">20 km</span></label>
+                  <input type="range" id="col-area" min="5" max="100" value="20" class="range-input" />
+                </div>
+                <div class="form-group">
+                  <label>Jenis E-Waste Dikumpulkan</label>
+                  <div class="chip-group">
+                    <label class="chip"><input type="checkbox" value="kecil"/>📱 Elektronik Kecil</label>
+                    <label class="chip"><input type="checkbox" value="besar"/>🖥️ Elektronik Besar</label>
+                    <label class="chip"><input type="checkbox" value="baterai"/>🔋 Baterai</label>
+                    <label class="chip"><input type="checkbox" value="pcb"/>⚙️ PCB & Komponen</label>
+                    <label class="chip"><input type="checkbox" value="kabel"/>🔌 Kabel & Charger</label>
+                  </div>
+                </div>
+                <div class="form-group"><label for="col-cap">Kapasitas per Bulan (kg)</label><input type="number" id="col-cap" placeholder="Contoh: 500" min="10" /></div>
+                <button type="submit" class="btn btn-dark btn-full" id="submit-collector">Daftar sebagai Pengepul</button>
+              </form>
+            </div>
+
+            <!-- Industri -->
+            <div class="tab-panel" id="panel-industry">
+              <form class="reg-form" id="form-industry" novalidate>
+                <div class="form-row">
+                  <div class="form-group"><label for="ind-company">Nama Perusahaan</label><input type="text" id="ind-company" placeholder="PT. Recycling Indonesia" required /></div>
+                  <div class="form-group"><label for="ind-siup">No. SIUP / NIB</label><input type="text" id="ind-siup" placeholder="1234567890" required /></div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group"><label for="ind-email">Email Perusahaan</label><input type="email" id="ind-email" placeholder="info@perusahaan.com" required /></div>
+                  <div class="form-group"><label for="ind-phone">No. Telepon Kantor</label><input type="tel" id="ind-phone" placeholder="021-xxxx-xxxx" required /></div>
+                </div>
+                <div class="form-group"><label for="ind-address">Alamat Fasilitas</label><textarea id="ind-address" placeholder="Jl. Industri No. 1, Jakarta..." rows="3"></textarea></div>
+                <div class="form-group">
+                  <label>Material yang Dibutuhkan</label>
+                  <div class="chip-group">
+                    <label class="chip"><input type="checkbox" value="gold"/>🥇 Logam Mulia</label>
+                    <label class="chip"><input type="checkbox" value="copper"/>🔶 Tembaga</label>
+                    <label class="chip"><input type="checkbox" value="lithium"/>🔵 Lithium Battery</label>
+                    <label class="chip"><input type="checkbox" value="aluminum"/>⬜ Aluminium</label>
+                    <label class="chip"><input type="checkbox" value="pcb"/>⚙️ PCB & Komponen</label>
+                    <label class="chip"><input type="checkbox" value="plastic"/>♻️ Plastik Elektronik</label>
+                  </div>
+                </div>
+                <div class="form-group"><label for="ind-vol">Volume Kebutuhan per Bulan (ton)</label><input type="number" id="ind-vol" placeholder="Contoh: 10" min="1" /></div>
+                <button type="submit" class="btn btn-dark btn-full" id="submit-industry">Daftar sebagai Industri</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SUCCESS MODAL -->
+  <div class="modal-overlay" id="modal-overlay">
+    <div class="modal" id="success-modal">
+      <div class="modal-icon">✅</div>
+      <h3 class="modal-title">Pendaftaran Berhasil!</h3>
+      <p class="modal-text">Terima kasih! Tim kami akan menghubungimu dalam 1x24 jam untuk verifikasi akun.</p>
+      <button class="btn btn-dark" id="modal-close">Tutup</button>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="footer-logo-mark"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5z" fill="currentColor"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+          <span class="footer-brand-name">Urban Mining Connector</span>
+        </div>
+        <p class="footer-tagline">Platform digital penghubung ekosistem daur ulang e-waste Indonesia.</p>
+        <div class="footer-tags"><span class="footer-tag">🌱 SDGs 12</span><span class="footer-tag">♻️ Ekonomi Sirkular</span></div>
+      </div>
+      <div class="footer-links-grid">
+        <div class="footer-col"><h4>Platform</h4><ul>
+          <li><a href="tentang.html">Tentang Kami</a></li><li><a href="cara-kerja.html">Cara Kerja</a></li>
+          <li><a href="peta.html">Peta Drop-Off</a></li><li><a href="marketplace.html">Marketplace</a></li>
+        </ul></div>
+        <div class="footer-col"><h4>Bergabung</h4><ul>
+          <li><a href="daftar.html">Daftar Masyarakat</a></li><li><a href="daftar.html">Daftar Pengepul</a></li><li><a href="daftar.html">Daftar Industri</a></li>
+        </ul></div>
+        <div class="footer-col"><h4>Kontak</h4><ul>
+          <li><a href="mailto:info@umc.id">info@umc.id</a></li><li><a href="#">+62 812-3456-7890</a></li>
+        </ul></div>
+      </div>
+      <div class="footer-wordmark">Urban Mining</div>
+      <div class="footer-bottom">
+        <p>© 2025 Urban Mining Connector · Supporting SDGs 12</p>
+        <div class="footer-socials"><a href="#" class="social-pill dark">ig</a><a href="#" class="social-pill dark">tw</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js?v=3"></script>
+</body>
+</html>
+
+

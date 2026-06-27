@@ -1,0 +1,117 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Peta Drop-Off — Urban Mining Connector</title>
+  <meta name="description" content="Temukan titik drop-off e-waste, pengepul, dan fasilitas daur ulang terdekat di Indonesia." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="style.css?v=3" />
+</head>
+<body class="map-page">
+
+  <nav class="navbar scrolled" id="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="nav-logo">
+        <div class="logo-mark"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5z" fill="currentColor"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <span>Urban Mining<span class="logo-dot">.</span></span>
+      </a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="tentang.html" class="nav-link">Tentang</a></li>
+        <li><a href="cara-kerja.html" class="nav-link">Cara Kerja</a></li>
+        <li><a href="peta.html" class="nav-link nav-active">Peta Drop-Off</a></li>
+        <li><a href="marketplace.html" class="nav-link">Marketplace</a></li>
+        <li><a href="daftar.html" class="nav-link nav-cta">Bergabung</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <!-- MAP LAYOUT: sidebar + full map -->
+  <div class="map-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="map-sidebar" id="map-sidebar">
+      <div class="sidebar-header">
+        <div class="breadcrumb"><a href="index.html">Beranda</a> <span>/</span> <span>Peta Drop-Off</span></div>
+        <h1 class="sidebar-title">Peta<br/>Drop-Off</h1>
+        <p class="sidebar-desc">Temukan titik pengumpulan e-waste, pengepul, dan fasilitas daur ulang terdekat di seluruh Indonesia.</p>
+      </div>
+
+      <!-- FILTERS -->
+      <div class="sidebar-filters">
+        <p class="filter-label">Filter Berdasarkan Tipe</p>
+        <div class="filter-stack" id="map-filters">
+          <button class="filter-pill-full active" data-filter="all" id="fp-all">
+            <span class="fp-dot all-dot"></span> Tampilkan Semua
+          </button>
+          <button class="filter-pill-full" data-filter="dropoff" id="fp-drop">
+            <span class="fp-dot green-dot"></span> Drop-Off Box
+          </button>
+          <button class="filter-pill-full" data-filter="collector" id="fp-col">
+            <span class="fp-dot amber-dot"></span> Pengepul / Kolektor
+          </button>
+          <button class="filter-pill-full" data-filter="recycle" id="fp-rec">
+            <span class="fp-dot teal-dot"></span> Fasilitas Daur Ulang
+          </button>
+        </div>
+      </div>
+
+      <!-- LEGEND -->
+      <div class="sidebar-legend">
+        <p class="filter-label">Keterangan</p>
+        <div class="legend-list">
+          <div class="legend-item-full">
+            <span class="ldot green"></span>
+            <div>
+              <strong>Drop-Off Box</strong>
+              <span>Kotak pengumpulan mandiri</span>
+            </div>
+          </div>
+          <div class="legend-item-full">
+            <span class="ldot amber"></span>
+            <div>
+              <strong>Pengepul</strong>
+              <span>Menerima pickup & walk-in</span>
+            </div>
+          </div>
+          <div class="legend-item-full">
+            <span class="ldot teal"></span>
+            <div>
+              <strong>Fasilitas Daur Ulang</strong>
+              <span>Industri daur ulang formal</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STATS -->
+      <div class="sidebar-stats">
+        <div class="ss-item"><span class="ss-num">10</span><span class="ss-lbl">Drop-Off Box</span></div>
+        <div class="ss-item"><span class="ss-num">6</span><span class="ss-lbl">Pengepul</span></div>
+        <div class="ss-item"><span class="ss-num">5</span><span class="ss-lbl">Fasilitas Daur Ulang</span></div>
+      </div>
+
+      <a href="daftar.html" class="btn btn-dark btn-full sidebar-cta">Daftarkan Lokasimu +</a>
+    </aside>
+
+    <!-- MAP CONTAINER -->
+    <div class="map-main">
+      <div id="map" class="map-fullpage"></div>
+      <!-- Floating info -->
+      <div class="map-float-info">
+        <span>Klik marker untuk detail lokasi</span>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="script.js?v=3"></script>
+</body>
+</html>
+
+
