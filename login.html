@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login — Urban Mining Connector</title>
+  <meta name="description" content="Masuk ke dashboard Urban Mining Connector." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css?v=3" />
+  <style>
+    .login-container {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--grey-100);
+      padding: 40px 20px;
+    }
+    .login-card {
+      background: var(--white);
+      width: 100%;
+      max-width: 420px;
+      padding: 48px 40px;
+      border-radius: var(--radius-xl);
+      border: 1.5px solid var(--grey-200);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.04);
+      text-align: center;
+    }
+    .login-logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-heading);
+      font-size: 1.4rem;
+      font-weight: 900;
+      color: var(--black);
+      margin-bottom: 32px;
+      text-decoration: none;
+    }
+    .login-logo .logo-mark { width: 32px; height: 32px; }
+    
+    .login-card h1 {
+      font-family: var(--font-heading);
+      font-size: 1.8rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+    .login-card p {
+      font-size: 0.9rem;
+      color: var(--grey-500);
+      margin-bottom: 32px;
+    }
+    
+    .login-form {
+      text-align: left;
+    }
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--black);
+      margin-bottom: 8px;
+    }
+    .form-group input, .form-group select {
+      width: 100%;
+      padding: 14px 16px;
+      background: var(--grey-100);
+      border: 1.5px solid var(--grey-200);
+      border-radius: var(--radius-md);
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      color: var(--black);
+      transition: var(--transition);
+      margin-bottom: 20px;
+    }
+    .form-group input:focus, .form-group select:focus {
+      outline: none;
+      border-color: var(--black);
+      background: var(--white);
+    }
+    
+    .login-divider {
+      display: flex;
+      align-items: center;
+      text-align: center;
+      color: var(--grey-400);
+      font-size: 0.8rem;
+      margin: 24px 0;
+    }
+    .login-divider::before, .login-divider::after {
+      content: '';
+      flex: 1;
+      border-bottom: 1px solid var(--grey-200);
+    }
+    .login-divider span { padding: 0 10px; }
+    
+    .login-footer {
+      margin-top: 24px;
+      font-size: 0.9rem;
+      color: var(--grey-500);
+    }
+    .login-footer a {
+      color: var(--black);
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .login-footer a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+  <div class="login-container">
+    <div class="login-card">
+      <a href="index.html" class="login-logo">
+        <div class="logo-mark"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5z" fill="currentColor"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <span>Urban Mining<span class="logo-dot" style="color:#3D7A3A">.</span></span>
+      </a>
+      
+      <h1>Selamat Datang</h1>
+      <p>Masuk ke dashboard untuk mengelola aktivitas e-waste kamu.</p>
+      
+      <form class="login-form" id="login-form">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="contoh@email.com" value="user@demo.com" required />
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" placeholder="••••••••" value="password123" required />
+        </div>
+        
+        <!-- PROTOTYPE ONLY: Role selector to simulate routing -->
+        <div class="form-group" style="background:#f7f8f5; padding:16px; border-radius:12px; border:1px solid #e8e8e2; margin-top:8px;">
+          <label for="demo-role" style="color:#3D7A3A;">🛠️ Prototype Role Selector</label>
+          <select id="demo-role" style="margin-bottom:0; background:#fff;">
+            <option value="dashboard-user.html">Pemilik E-Waste</option>
+            <option value="dashboard-recycler.html">Recycler / Pengepul</option>
+            <option value="dashboard-admin.html">Admin Sistem</option>
+          </select>
+        </div>
+
+        <button type="button" class="btn btn-dark btn-full" style="margin-top:24px;" onclick="simulateLogin()">Masuk</button>
+      </form>
+      
+      <div class="login-divider"><span>atau</span></div>
+      
+      <div class="login-footer">
+        Belum punya akun? <a href="daftar.html">Daftar sekarang</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function simulateLogin() {
+      const btn = document.querySelector('.btn-dark');
+      btn.textContent = 'Memproses...';
+      btn.style.opacity = '0.7';
+      
+      // Simulate network request
+      setTimeout(() => {
+        const route = document.getElementById('demo-role').value;
+        window.location.href = route;
+      }, 800);
+    }
+  </script>
+</body>
+</html>

@@ -24,6 +24,7 @@
         <li><a href="cara-kerja.html" class="nav-link">Cara Kerja</a></li>
         <li><a href="peta.html" class="nav-link">Peta Drop-Off</a></li>
         <li><a href="marketplace.html" class="nav-link">Marketplace</a></li>
+        <li><a href="login.html" class="nav-link" style="font-weight:700;">Login</a></li>
         <li><a href="daftar.html" class="nav-link nav-cta nav-active">Bergabung</a></li>
       </ul>
       <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
@@ -98,9 +99,11 @@
         <div class="daftar-form-wrap">
           <div class="reg-wrapper">
             <div class="reg-tabs" id="reg-tabs">
-              <button class="reg-tab active" data-tab="citizen" id="tab-ctz">🏠 Masyarakat</button>
-              <button class="reg-tab" data-tab="collector" id="tab-col">🚛 Pengepul</button>
-              <button class="reg-tab" data-tab="industry" id="tab-ind">🏭 Industri</button>
+              <button class="reg-tab active" data-tab="citizen" id="tab-ctz">🏠 Pemilik E-Waste</button>
+              <button class="reg-tab" data-tab="collector" id="tab-col">♻️ Recycler</button>
+            </div>
+            <div style="text-align:center; font-size:13px; color:var(--grey-500); margin-top:-16px; margin-bottom:24px;">
+              Admin sistem? <a href="login.html" style="color:var(--black); font-weight:700;">Login di sini</a>
             </div>
 
             <!-- Masyarakat -->
@@ -134,7 +137,7 @@
                     <label class="chip"><input type="radio" name="c-method" value="pickup"/>Request Pickup ke Rumah</label>
                   </div>
                 </div>
-                <button type="submit" class="btn btn-dark btn-full" id="submit-citizen">Daftar sebagai Masyarakat</button>
+                <button type="submit" class="btn btn-dark btn-full" id="submit-citizen">Daftar sebagai Pemilik E-Waste</button>
               </form>
             </div>
 
@@ -166,35 +169,7 @@
                   </div>
                 </div>
                 <div class="form-group"><label for="col-cap">Kapasitas per Bulan (kg)</label><input type="number" id="col-cap" placeholder="Contoh: 500" min="10" /></div>
-                <button type="submit" class="btn btn-dark btn-full" id="submit-collector">Daftar sebagai Pengepul</button>
-              </form>
-            </div>
-
-            <!-- Industri -->
-            <div class="tab-panel" id="panel-industry">
-              <form class="reg-form" id="form-industry" novalidate>
-                <div class="form-row">
-                  <div class="form-group"><label for="ind-company">Nama Perusahaan</label><input type="text" id="ind-company" placeholder="PT. Recycling Indonesia" required /></div>
-                  <div class="form-group"><label for="ind-siup">No. SIUP / NIB</label><input type="text" id="ind-siup" placeholder="1234567890" required /></div>
-                </div>
-                <div class="form-row">
-                  <div class="form-group"><label for="ind-email">Email Perusahaan</label><input type="email" id="ind-email" placeholder="info@perusahaan.com" required /></div>
-                  <div class="form-group"><label for="ind-phone">No. Telepon Kantor</label><input type="tel" id="ind-phone" placeholder="021-xxxx-xxxx" required /></div>
-                </div>
-                <div class="form-group"><label for="ind-address">Alamat Fasilitas</label><textarea id="ind-address" placeholder="Jl. Industri No. 1, Jakarta..." rows="3"></textarea></div>
-                <div class="form-group">
-                  <label>Material yang Dibutuhkan</label>
-                  <div class="chip-group">
-                    <label class="chip"><input type="checkbox" value="gold"/>🥇 Logam Mulia</label>
-                    <label class="chip"><input type="checkbox" value="copper"/>🔶 Tembaga</label>
-                    <label class="chip"><input type="checkbox" value="lithium"/>🔵 Lithium Battery</label>
-                    <label class="chip"><input type="checkbox" value="aluminum"/>⬜ Aluminium</label>
-                    <label class="chip"><input type="checkbox" value="pcb"/>⚙️ PCB & Komponen</label>
-                    <label class="chip"><input type="checkbox" value="plastic"/>♻️ Plastik Elektronik</label>
-                  </div>
-                </div>
-                <div class="form-group"><label for="ind-vol">Volume Kebutuhan per Bulan (ton)</label><input type="number" id="ind-vol" placeholder="Contoh: 10" min="1" /></div>
-                <button type="submit" class="btn btn-dark btn-full" id="submit-industry">Daftar sebagai Industri</button>
+                <button type="submit" class="btn btn-dark btn-full" id="submit-collector">Daftar sebagai Recycler</button>
               </form>
             </div>
           </div>
@@ -229,8 +204,8 @@
           <li><a href="tentang.html">Tentang Kami</a></li><li><a href="cara-kerja.html">Cara Kerja</a></li>
           <li><a href="peta.html">Peta Drop-Off</a></li><li><a href="marketplace.html">Marketplace</a></li>
         </ul></div>
-        <div class="footer-col"><h4>Bergabung</h4><ul>
-          <li><a href="daftar.html">Daftar Masyarakat</a></li><li><a href="daftar.html">Daftar Pengepul</a></li><li><a href="daftar.html">Daftar Industri</a></li>
+        <div class="footer-col"><h4>Akses</h4><ul>
+          <li><a href="daftar.html">Daftar Pemilik E-Waste</a></li><li><a href="daftar.html">Daftar Recycler</a></li><li><a href="login.html">Login Admin</a></li>
         </ul></div>
         <div class="footer-col"><h4>Kontak</h4><ul>
           <li><a href="mailto:info@umc.id">info@umc.id</a></li><li><a href="#">+62 812-3456-7890</a></li>
@@ -247,5 +222,6 @@
   <script src="script.js?v=3"></script>
 </body>
 </html>
+
 
 

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Upload E-Waste — Urban Mining Connector</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css?v=3" />
+  <style>
+    body { background: var(--grey-100); }
+    .dash-layout { display: grid; grid-template-columns: 260px 1fr; min-height: 100vh; }
+    
+    /* Sidebar (Reused) */
+    .dash-sidebar { background: var(--white); border-right: 1px solid var(--grey-200); padding: 32px 24px; display: flex; flex-direction: column; position: sticky; top: 0; height: 100vh; }
+    .dash-logo { display: flex; align-items: center; gap: 10px; font-family: var(--font-heading); font-size: 1.2rem; font-weight: 800; color: var(--black); text-decoration: none; margin-bottom: 48px; }
+    .dash-nav { display: flex; flex-direction: column; gap: 8px; flex: 1; }
+    .dash-link { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-radius: var(--radius-md); color: var(--grey-500); font-weight: 500; text-decoration: none; transition: var(--transition); }
+    .dash-link:hover, .dash-link.active { background: var(--grey-100); color: var(--black); }
+    .dash-link.active { font-weight: 700; }
+    .dash-user-card { padding: 16px; background: var(--grey-100); border-radius: var(--radius-md); display: flex; align-items: center; gap: 12px; margin-top: auto; }
+    .dash-avatar { width: 40px; height: 40px; background: var(--black); border-radius: 50%; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; }
+    
+    .dash-main { padding: 40px 48px; max-width: 900px; margin: 0 auto; width: 100%; }
+    .dash-header { margin-bottom: 32px; }
+    .dash-header h1 { font-family: var(--font-heading); font-size: 2rem; font-weight: 800; letter-spacing: -1px; }
+    .dash-header p { color: var(--grey-500); margin-top: 8px; }
+    
+    /* Upload Flow Cards */
+    .flow-card { background: var(--white); border: 1px solid var(--grey-200); border-radius: var(--radius-lg); padding: 32px; margin-bottom: 24px; display: none; }
+    .flow-card.active { display: block; animation: slideUp 0.4s ease; }
+    
+    @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* Step 1: Upload */
+    .upload-area {
+      border: 2px dashed var(--grey-300);
+      border-radius: var(--radius-lg);
+      padding: 60px 20px;
+      text-align: center;
+      background: #fafafa;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .upload-area:hover { border-color: var(--black); background: var(--grey-100); }
+    .upload-icon { font-size: 3rem; margin-bottom: 16px; display: block; }
+    
+    /* Step 2: AI Scanning */
+    .ai-scanner { position: relative; width: 100%; max-width: 400px; margin: 0 auto; height: 300px; background: #e0e0e0; border-radius: var(--radius-md); overflow: hidden; }
+    .ai-img-mock { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.9); }
+    .scan-line {
+      position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: #3B82F6;
+      box-shadow: 0 0 15px 5px rgba(59,130,246,0.5);
+      animation: scan 2s infinite ease-in-out alternate;
+    }
+    @keyframes scan { from { top: 0; } to { top: 100%; } }
+    .ai-text { text-align: center; margin-top: 24px; font-weight: 600; color: #3B82F6; }
+
+    /* Step 3: Result & Form */
+    .result-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .result-img { width: 100%; height: 240px; object-fit: cover; border-radius: var(--radius-md); }
+    .result-details { background: var(--grey-100); padding: 24px; border-radius: var(--radius-md); }
+    .rd-item { margin-bottom: 16px; }
+    .rd-lbl { font-size: 0.8rem; color: var(--grey-500); font-weight: 600; text-transform: uppercase; margin-bottom: 4px; }
+    .rd-val { font-size: 1.1rem; font-weight: 700; color: var(--black); }
+    
+    .form-group label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 8px; }
+    .form-group select { width: 100%; padding: 14px 16px; background: var(--grey-100); border: 1.5px solid var(--grey-200); border-radius: var(--radius-md); font-family: var(--font-body); margin-bottom: 20px; }
+    
+    /* Progress */
+    .stepper { display: flex; gap: 8px; margin-bottom: 32px; }
+    .step-dot { flex: 1; height: 6px; border-radius: 99px; background: var(--grey-200); transition: var(--transition); }
+    .step-dot.active { background: var(--black); }
+    
+    @media (max-width: 1024px) { .dash-layout { grid-template-columns: 1fr; } .dash-sidebar { display: none; } .result-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+  <div class="dash-layout">
+    <aside class="dash-sidebar">
+      <a href="index.html" class="dash-logo">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5z" fill="#3D7A3A"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5" stroke="#3D7A3A" stroke-width="2" stroke-linecap="round"/></svg>
+        Urban Mining.
+      </a>
+      <nav class="dash-nav">
+        <a href="dashboard-user.html" class="dash-link">🏠 Beranda</a>
+        <a href="upload-ewaste.html" class="dash-link active">📸 Upload E-Waste</a>
+        <a href="#" class="dash-link">🎁 Tukar Poin</a>
+      </nav>
+    </aside>
+
+    <main class="dash-main">
+      <div class="dash-header">
+        <h1>Identifikasi AI</h1>
+        <p>Unggah foto barang elektronik bekasmu, dan biarkan AI kami mengklasifikasikannya secara otomatis.</p>
+      </div>
+      
+      <div class="stepper">
+        <div class="step-dot active" id="dot-1"></div>
+        <div class="step-dot" id="dot-2"></div>
+        <div class="step-dot" id="dot-3"></div>
+      </div>
+
+      <!-- STEP 1: UPLOAD -->
+      <div class="flow-card active" id="step-1">
+        <h3 style="margin-bottom:16px;">Langkah 1: Unggah Foto</h3>
+        <div class="upload-area" onclick="startAI()">
+          <span class="upload-icon">📸</span>
+          <h4 style="margin-bottom:8px;">Klik untuk memilih foto</h4>
+          <p style="color:var(--grey-500);font-size:0.9rem;">Atau drag and drop file ke area ini (PNG, JPG, max 5MB)</p>
+          <button class="btn btn-dark" style="margin-top:24px;">Pilih File</button>
+        </div>
+      </div>
+
+      <!-- STEP 2: AI SCANNING -->
+      <div class="flow-card" id="step-2">
+        <h3 style="margin-bottom:24px; text-align:center;">AI Sedang Menganalisis...</h3>
+        <div class="ai-scanner">
+          <!-- Placeholder image simulating user upload -->
+          <img src="https://images.unsplash.com/photo-1588508065123-287b28e0141c?auto=format&fit=crop&q=80&w=600" class="ai-img-mock" alt="Scanning e-waste" />
+          <div class="scan-line"></div>
+        </div>
+        <div class="ai-text">Mendeteksi jenis material dan komponen...</div>
+      </div>
+
+      <!-- STEP 3: RESULT & FORM -->
+      <div class="flow-card" id="step-3">
+        <h3 style="margin-bottom:24px;">Hasil Klasifikasi AI</h3>
+        <div class="result-grid">
+          <div>
+            <img src="https://images.unsplash.com/photo-1588508065123-287b28e0141c?auto=format&fit=crop&q=80&w=600" class="result-img" alt="E-waste" />
+          </div>
+          <div class="result-details">
+            <div class="rd-item">
+              <div class="rd-lbl">Kategori Terdeteksi</div>
+              <div class="rd-val">📱 Smartphone & Tablet</div>
+            </div>
+            <div class="rd-item">
+              <div class="rd-lbl">Kondisi</div>
+              <div class="rd-val">Rusak Total (Layar Pecah)</div>
+            </div>
+            <div class="rd-item">
+              <div class="rd-lbl">Estimasi Berat</div>
+              <div class="rd-val">0.3 - 0.5 kg</div>
+            </div>
+            <div class="rd-item">
+              <div class="rd-lbl">Potensi Reward</div>
+              <div class="rd-val" style="color:#3D7A3A;">+250 Poin</div>
+            </div>
+          </div>
+        </div>
+        
+        <hr style="border:none; border-top:1px solid var(--grey-200); margin:32px 0;" />
+        
+        <h3 style="margin-bottom:16px;">Request Pickup</h3>
+        <div class="form-group">
+          <label>Pilih Recycler Terdekat (Terkonfirmasi)</label>
+          <select>
+            <option>CV. Daur Ulang Jaya (2.1 km)</option>
+            <option>Pengepul Berkah E-Waste (4.5 km)</option>
+            <option>PT. EcoRecycle Indonesia (12 km)</option>
+          </select>
+        </div>
+        <button class="btn btn-dark" onclick="finishFlow()">Ajukan Penjemputan Sekarang</button>
+      </div>
+
+    </main>
+  </div>
+
+  <script>
+    function showStep(n) {
+      document.querySelectorAll('.flow-card').forEach(el => el.classList.remove('active'));
+      document.getElementById('step-' + n).classList.add('active');
+      
+      document.querySelectorAll('.step-dot').forEach((el, idx) => {
+        if (idx < n) el.classList.add('active');
+      });
+    }
+
+    function startAI() {
+      // Pindah ke step 2 (Loading)
+      showStep(2);
+      
+      // Tunggu 3 detik, simulasi AI selesai, pindah ke step 3
+      setTimeout(() => {
+        showStep(3);
+      }, 3000);
+    }
+    
+    function finishFlow() {
+      const btn = document.querySelector('#step-3 .btn-dark');
+      btn.textContent = 'Memproses...';
+      setTimeout(() => {
+        alert("✅ Request Pickup Berhasil! Recycler akan segera menghubungi Anda.");
+        window.location.href = "dashboard-user.html";
+      }, 1000);
+    }
+  </script>
+</body>
+</html>

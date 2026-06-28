@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard Pemilik — Urban Mining Connector</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css?v=3" />
+  <style>
+    body { background: var(--grey-100); }
+    .dash-layout {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      min-height: 100vh;
+    }
+    
+    /* Sidebar */
+    .dash-sidebar {
+      background: var(--white);
+      border-right: 1px solid var(--grey-200);
+      padding: 32px 24px;
+      display: flex;
+      flex-direction: column;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+    }
+    .dash-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-heading);
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--black);
+      text-decoration: none;
+      margin-bottom: 48px;
+    }
+    .dash-nav { display: flex; flex-direction: column; gap: 8px; flex: 1; }
+    .dash-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      border-radius: var(--radius-md);
+      color: var(--grey-500);
+      font-weight: 500;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+    .dash-link:hover, .dash-link.active {
+      background: var(--grey-100);
+      color: var(--black);
+    }
+    .dash-link.active { font-weight: 700; }
+    
+    .dash-user-card {
+      padding: 16px;
+      background: var(--grey-100);
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: auto;
+    }
+    .dash-avatar { width: 40px; height: 40px; background: var(--black); border-radius: 50%; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; }
+    .dash-user-info h4 { font-size: 0.9rem; margin-bottom: 2px; }
+    .dash-user-info p { font-size: 0.75rem; color: var(--grey-500); }
+
+    /* Main Content */
+    .dash-main { padding: 40px 48px; }
+    .dash-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 32px; }
+    .dash-header h1 { font-family: var(--font-heading); font-size: 2rem; font-weight: 800; letter-spacing: -1px; }
+    .dash-header p { color: var(--grey-500); margin-top: 8px; }
+    
+    /* Stats Grid */
+    .dash-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 40px; }
+    .stat-card {
+      background: var(--white);
+      padding: 24px;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--grey-200);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+    }
+    .stat-card-title { font-size: 0.85rem; color: var(--grey-500); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; }
+    .stat-card-val { font-family: var(--font-heading); font-size: 2.2rem; font-weight: 900; color: var(--black); }
+    .stat-card-val.green { color: #3D7A3A; }
+
+    /* Tracking Section */
+    .dash-section-title { font-family: var(--font-heading); font-size: 1.2rem; font-weight: 800; margin-bottom: 20px; }
+    
+    .tracking-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--grey-200);
+      padding: 24px;
+      margin-bottom: 40px;
+    }
+    .track-header { display: flex; justify-content: space-between; margin-bottom: 24px; border-bottom: 1px solid var(--grey-200); padding-bottom: 16px; }
+    .track-id { font-weight: 700; font-size: 1.1rem; }
+    .track-badge { background: #EAF4E8; color: #3D7A3A; padding: 4px 12px; border-radius: 99px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; }
+    
+    .track-steps { display: flex; justify-content: space-between; position: relative; }
+    .track-steps::before {
+      content: ''; position: absolute; top: 15px; left: 30px; right: 30px;
+      height: 2px; background: var(--grey-200); z-index: 1;
+    }
+    .track-step { text-align: center; position: relative; z-index: 2; width: 80px; }
+    .step-icon {
+      width: 32px; height: 32px; background: var(--white); border: 2px solid var(--grey-200);
+      border-radius: 50%; margin: 0 auto 12px; display: flex; align-items: center; justify-content: center;
+      font-size: 14px;
+    }
+    .track-step.active .step-icon { border-color: #3D7A3A; background: #3D7A3A; color: #fff; }
+    .track-step.done .step-icon { border-color: #3D7A3A; background: #fff; color: #3D7A3A; }
+    .step-lbl { font-size: 0.75rem; font-weight: 600; color: var(--grey-500); }
+    .track-step.active .step-lbl, .track-step.done .step-lbl { color: var(--black); }
+
+    /* History Table */
+    .history-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--grey-200);
+      overflow: hidden;
+    }
+    .table { width: 100%; border-collapse: collapse; }
+    .table th { background: var(--grey-100); text-align: left; padding: 14px 24px; font-size: 0.8rem; font-weight: 600; color: var(--grey-500); text-transform: uppercase; letter-spacing: 0.5px; }
+    .table td { padding: 16px 24px; border-bottom: 1px solid var(--grey-200); font-size: 0.9rem; }
+    .table tr:last-child td { border-bottom: none; }
+    
+    @media (max-width: 1024px) {
+      .dash-layout { grid-template-columns: 1fr; }
+      .dash-sidebar { display: none; }
+      .dash-main { padding: 24px; }
+      .dash-stats { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="dash-layout">
+    <!-- SIDEBAR -->
+    <aside class="dash-sidebar">
+      <a href="index.html" class="dash-logo">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5z" fill="#3D7A3A"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5" stroke="#3D7A3A" stroke-width="2" stroke-linecap="round"/></svg>
+        Urban Mining.
+      </a>
+      
+      <nav class="dash-nav">
+        <a href="dashboard-user.html" class="dash-link active">🏠 Beranda</a>
+        <a href="upload-ewaste.html" class="dash-link">📸 Upload E-Waste</a>
+        <a href="#" class="dash-link">🎁 Tukar Poin</a>
+        <a href="#" class="dash-link">⚙️ Pengaturan</a>
+      </nav>
+      
+      <div class="dash-user-card">
+        <div class="dash-avatar">AD</div>
+        <div class="dash-user-info">
+          <h4>Andi Darmawan</h4>
+          <p>Pemilik E-Waste</p>
+        </div>
+      </div>
+      <a href="login.html" style="margin-top:16px;text-align:center;font-size:0.8rem;color:#E02424;font-weight:600;text-decoration:none;">Logout</a>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="dash-main">
+      <div class="dash-header">
+        <div>
+          <h1>Halo, Andi! 👋</h1>
+          <p>Selamat datang di dashboard pengelolaan e-waste kamu.</p>
+        </div>
+        <a href="upload-ewaste.html" class="btn btn-dark">📸 Upload E-Waste Baru</a>
+      </div>
+
+      <div class="dash-stats">
+        <div class="stat-card">
+          <div class="stat-card-title">Poin Reward</div>
+          <div class="stat-card-val green">1,250</div>
+          <div style="font-size:0.8rem;color:var(--grey-500);margin-top:8px;">Setara Rp 12.500</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-title">E-Waste Disetor</div>
+          <div class="stat-card-val">8 <span style="font-size:1rem;color:var(--grey-500);">Item</span></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-title">Dampak Karbon (CO2)</div>
+          <div class="stat-card-val">4.5 <span style="font-size:1rem;color:var(--grey-500);">kg dihemat</span></div>
+        </div>
+      </div>
+
+      <h2 class="dash-section-title">Status Penjemputan Aktif</h2>
+      <div class="tracking-card">
+        <div class="track-header">
+          <div>
+            <div class="track-id">TRX-99281-A</div>
+            <div style="font-size:0.85rem;color:var(--grey-500);margin-top:4px;">Smartphone Bekas & Baterai (0.8 kg)</div>
+          </div>
+          <div><span class="track-badge">Sedang Dijemput</span></div>
+        </div>
+        <div class="track-steps">
+          <div class="track-step done">
+            <div class="step-icon">✓</div>
+            <div class="step-lbl">Request Dikirim</div>
+          </div>
+          <div class="track-step done">
+            <div class="step-icon">✓</div>
+            <div class="step-lbl">Recycler Konfirmasi</div>
+          </div>
+          <div class="track-step active">
+            <div class="step-icon">🚚</div>
+            <div class="step-lbl">Kurir Menuju Lokasi</div>
+          </div>
+          <div class="track-step">
+            <div class="step-icon">⚙️</div>
+            <div class="step-lbl">Diproses</div>
+          </div>
+          <div class="track-step">
+            <div class="step-icon">🎁</div>
+            <div class="step-lbl">Selesai</div>
+          </div>
+        </div>
+      </div>
+
+      <h2 class="dash-section-title">Riwayat Transaksi</h2>
+      <div class="history-card">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>ID Transaksi</th>
+              <th>Tanggal</th>
+              <th>Barang</th>
+              <th>Pengepul</th>
+              <th>Poin</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong style="color:var(--black)">TRX-88210-B</strong></td>
+              <td>12 Mei 2026</td>
+              <td>Kabel & Charger (1.2 kg)</td>
+              <td>CV. Daur Ulang Jaya</td>
+              <td style="color:#3D7A3A;font-weight:700;">+250</td>
+              <td><span style="font-size:12px;background:var(--grey-100);padding:4px 8px;border-radius:4px;font-weight:600;">Selesai</span></td>
+            </tr>
+            <tr>
+              <td><strong style="color:var(--black)">TRX-77192-C</strong></td>
+              <td>03 Apr 2026</td>
+              <td>Laptop Rusak (2.4 kg)</td>
+              <td>Pengepul Maju Bandung</td>
+              <td style="color:#3D7A3A;font-weight:700;">+1000</td>
+              <td><span style="font-size:12px;background:var(--grey-100);padding:4px 8px;border-radius:4px;font-weight:600;">Selesai</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </main>
+  </div>
+
+</body>
+</html>

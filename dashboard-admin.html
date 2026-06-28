@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard Admin — Urban Mining Connector</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css?v=3" />
+  <style>
+    body { background: var(--grey-100); }
+    .dash-layout { display: grid; grid-template-columns: 260px 1fr; min-height: 100vh; }
+    
+    /* Sidebar */
+    .dash-sidebar { background: #111; border-right: none; padding: 32px 24px; display: flex; flex-direction: column; position: sticky; top: 0; height: 100vh; color: var(--white); }
+    .dash-logo { display: flex; align-items: center; gap: 10px; font-family: var(--font-heading); font-size: 1.2rem; font-weight: 800; color: var(--white); text-decoration: none; margin-bottom: 48px; }
+    .dash-nav { display: flex; flex-direction: column; gap: 8px; flex: 1; }
+    .dash-link { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-radius: var(--radius-md); color: rgba(255,255,255,0.6); font-weight: 500; text-decoration: none; transition: var(--transition); }
+    .dash-link:hover, .dash-link.active { background: rgba(255,255,255,0.1); color: var(--white); }
+    .dash-link.active { font-weight: 700; border-left: 4px solid #3B82F6; }
+    
+    .dash-user-card { padding: 16px; background: rgba(255,255,255,0.05); border-radius: var(--radius-md); display: flex; align-items: center; gap: 12px; margin-top: auto; }
+    .dash-avatar { width: 40px; height: 40px; background: #3B82F6; border-radius: 50%; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; }
+    .dash-user-info h4 { font-size: 0.9rem; margin-bottom: 2px; color: var(--white); }
+    .dash-user-info p { font-size: 0.75rem; color: rgba(255,255,255,0.5); }
+
+    /* Main Content */
+    .dash-main { padding: 40px 48px; }
+    .dash-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 32px; }
+    .dash-header h1 { font-family: var(--font-heading); font-size: 2rem; font-weight: 800; letter-spacing: -1px; }
+    .dash-header p { color: var(--grey-500); margin-top: 8px; }
+    
+    /* Stats */
+    .dash-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-bottom: 40px; }
+    .stat-card { background: var(--white); padding: 24px; border-radius: var(--radius-lg); border: 1px solid var(--grey-200); }
+    .stat-card-title { font-size: 0.8rem; color: var(--grey-500); font-weight: 600; text-transform: uppercase; margin-bottom: 12px; }
+    .stat-card-val { font-family: var(--font-heading); font-size: 2.2rem; font-weight: 900; color: var(--black); }
+    
+    /* Data Tables */
+    .dash-section-title { font-family: var(--font-heading); font-size: 1.2rem; font-weight: 800; margin-bottom: 20px; }
+    .data-card { background: var(--white); border-radius: var(--radius-lg); border: 1px solid var(--grey-200); overflow: hidden; margin-bottom: 40px; }
+    .table { width: 100%; border-collapse: collapse; }
+    .table th { background: var(--grey-100); text-align: left; padding: 14px 24px; font-size: 0.8rem; font-weight: 600; color: var(--grey-500); text-transform: uppercase; }
+    .table td { padding: 16px 24px; border-bottom: 1px solid var(--grey-200); font-size: 0.9rem; vertical-align: middle; }
+    .table tr:last-child td { border-bottom: none; }
+    
+    .badge-ok { background: #EAF4E8; color: #3D7A3A; padding: 4px 10px; border-radius: 4px; font-size: 0.75rem; font-weight: 700; }
+    .badge-warn { background: #FEF3C7; color: #D97706; padding: 4px 10px; border-radius: 4px; font-size: 0.75rem; font-weight: 700; }
+
+    @media (max-width: 1024px) { .dash-layout { grid-template-columns: 1fr; } .dash-sidebar { display: none; } .dash-stats { grid-template-columns: repeat(2, 1fr); } }
+  </style>
+</head>
+<body>
+
+  <div class="dash-layout">
+    <aside class="dash-sidebar">
+      <a href="index.html" class="dash-logo">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5z" fill="#3B82F6"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5" stroke="#3B82F6" stroke-width="2" stroke-linecap="round"/></svg>
+        Urban Mining.
+      </a>
+      <nav class="dash-nav">
+        <a href="#" class="dash-link active">📊 System Overview</a>
+        <a href="#" class="dash-link">👥 Kelola Pengguna</a>
+        <a href="#" class="dash-link">📦 Data E-Waste</a>
+        <a href="#" class="dash-link">⚙️ Konfigurasi Reward</a>
+      </nav>
+      <div class="dash-user-card">
+        <div class="dash-avatar">ADM</div>
+        <div class="dash-user-info">
+          <h4>Admin Pusat</h4>
+          <p>Super Administrator</p>
+        </div>
+      </div>
+      <a href="login.html" style="margin-top:16px;text-align:center;font-size:0.8rem;color:#FCA5A5;font-weight:600;text-decoration:none;">Logout</a>
+    </aside>
+
+    <main class="dash-main">
+      <div class="dash-header">
+        <div>
+          <h1>Admin Dashboard 🛡️</h1>
+          <p>Pusat kontrol dan monitoring ekosistem Urban Mining Connector.</p>
+        </div>
+      </div>
+
+      <!-- Dashboard Class attributes mapped here -->
+      <div class="dash-stats">
+        <div class="stat-card">
+          <div class="stat-card-title">Total E-Waste (Bulan Ini)</div>
+          <div class="stat-card-val" style="color:#3B82F6">1,452 <span style="font-size:1rem;color:var(--grey-500)">kg</span></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-title">Total Pengguna</div>
+          <div class="stat-card-val">5,204</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-title">Total Recycler Aktif</div>
+          <div class="stat-card-val">48</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-title">Total Transaksi</div>
+          <div class="stat-card-val">12,890</div>
+        </div>
+      </div>
+
+      <h2 class="dash-section-title">Aktivitas Transaksi Terbaru</h2>
+      <div class="data-card">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>ID Transaksi</th>
+              <th>Pemilik E-Waste</th>
+              <th>Recycler Tujuan</th>
+              <th>Status</th>
+              <th>Waktu</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong style="color:var(--black)">TRX-99281-A</strong></td>
+              <td>Andi Darmawan</td>
+              <td>CV. Daur Ulang Jaya</td>
+              <td><span class="badge-warn">Proses Penjemputan</span></td>
+              <td>2 menit yang lalu</td>
+            </tr>
+            <tr>
+              <td><strong style="color:var(--black)">TRX-99280-Z</strong></td>
+              <td>Budi Santoso</td>
+              <td>Pengepul Maju Bandung</td>
+              <td><span class="badge-ok">Selesai (+1000 Poin)</span></td>
+              <td>15 menit yang lalu</td>
+            </tr>
+            <tr>
+              <td><strong style="color:var(--black)">TRX-99279-Y</strong></td>
+              <td>Citra Lestari</td>
+              <td>PT. EcoRecycle Indonesia</td>
+              <td><span class="badge-ok">Selesai (+500 Poin)</span></td>
+              <td>1 jam yang lalu</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 class="dash-section-title">Verifikasi Recycler Tertunda</h2>
+      <div class="data-card">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Nama Perusahaan</th>
+              <th>Dokumen / SIUP</th>
+              <th>Lokasi</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong style="color:var(--black)">UD. Berkah Elektronik</strong></td>
+              <td>SIUP-88219034-2026</td>
+              <td>Semarang, Jawa Tengah</td>
+              <td>
+                <button style="padding:6px 12px;background:#3B82F6;color:#fff;border:none;border-radius:4px;font-size:12px;font-weight:600;cursor:pointer;">Verifikasi</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </main>
+  </div>
+
+</body>
+</html>
